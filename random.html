@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="random.css">
+  <title>random div</title>
+</head>
+
+<body>
+  <div class="random" id="profile"></div>
+  <button class="download">Download profile</button>
+  <div class="output"></div>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="random.js"></script>
+  <script src="https://superal.github.io/canvas2image/canvas2image.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  
+
+  <script>
+    output = document.querySelector('.output');
+    document.querySelector('.download').addEventListener('click', function() {
+  html2canvas(document.querySelector('.random'), {
+    onrendered: function(canvas) {
+      console.log(canvas);
+      $('.output').empty();
+      output.appendChild(canvas);
+      return Canvas2Image.saveAsPNG(canvas);
+    }
+  });
+});
+  </script>
+</body>
+
+</html>
